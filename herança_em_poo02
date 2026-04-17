@@ -1,0 +1,390 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOCbE1YdAgDAg8xy3MK5gBC"
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "1520b4da"
+      },
+      "source": [
+        "### Exercício 1: Herança Básica\n",
+        "\n",
+        "**Objetivo**: Crie uma classe `Pessoa` com `nome` e `idade`. Crie uma classe `Estudante` que herda de `Pessoa` e adiciona `matricula` e um método `estudar()`."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from time import sleep\n",
+        "class Pessoa():\n",
+        "  def __init__(self, nome, idade):\n",
+        "    self.nome = nome\n",
+        "    self.idade = idade\n",
+        "\n",
+        "class Estudante(Pessoa):\n",
+        "  def __init__(self, nome, idade, matricula):\n",
+        "    super().__init__(nome, idade)\n",
+        "    self.matricula = matricula\n",
+        "\n",
+        "  def estudar(self):\n",
+        "\n",
+        "    print(\"estudando...\")\n",
+        "    sleep(2)\n",
+        "    print(\"aprendi algo novo !!\")\n",
+        "\n",
+        "p1 = Pessoa(\"erik\", 14)\n",
+        "p1 = Estudante(\"erik\", 14, 12345657)\n",
+        "p1.estudar()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5Crves2ONoxx",
+        "outputId": "2fd80757-ecc3-45c4-ae77-995f3b961c8e"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "estudando...\n",
+            "aprendi algo novo !!\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "d4499467"
+      },
+      "source": [
+        "### Exercício 2: Sobrescrita de Método\n",
+        "\n",
+        "**Objetivo**: Crie uma classe `Animal` com um método `fazer_som()`. Crie uma classe `Cachorro` que herda de `Animal` e sobrescreve `fazer_som()` para emitir um latido."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Animal():\n",
+        "  def __init__(self):\n",
+        "    pass\n",
+        "\n",
+        "  def fazer_som(self):\n",
+        "    print(\"algum som !!\")\n",
+        "\n",
+        "class Cachorro(Animal):\n",
+        "  def __init__(self):\n",
+        "    super().__init__()\n",
+        "    pass\n",
+        "  def fazer_som(self):\n",
+        "    print(\"au au!\")\n",
+        "\n",
+        "animal01 = Cachorro()\n",
+        "animal01.fazer_som()"
+      ],
+      "metadata": {
+        "id": "mzczUFPvSmbu",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "2a2b08f8-5c91-4159-e846-3ffc277635a5"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "au au!\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "629d0d4f"
+      },
+      "source": [
+        "### Exercício 3: Construtor `super()`\n",
+        "\n",
+        "**Objetivo**: Crie uma classe `FormaGeometrica` com `cor`. Crie uma classe `Circulo` que herda de `FormaGeometrica`, adiciona `raio` e utiliza `super()` para inicializar a cor."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class FormaGeometrica():\n",
+        "  def __init__(self, cor):\n",
+        "    self.cor = cor\n",
+        "\n",
+        "class Circulo(FormaGeometrica):\n",
+        "  def __init__(self, cor, raio):\n",
+        "    super().__init__(cor)\n",
+        "    self.raio = raio\n",
+        "\n",
+        "  def info(self):\n",
+        "    print(f\"raio : {self.raio}\")\n",
+        "    print(f\"cor: {self.cor}\")\n",
+        "\n",
+        "forma01 = Circulo(\"azul\", 23)\n",
+        "forma01.info()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "4WWGwos6OnBe",
+        "outputId": "9dd6ca1e-7ca7-4c72-ece0-248afc4a7b50"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "raio : 23\n",
+            "cor: azul\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "a371425e"
+      },
+      "source": [
+        "### Exercício 4: Herança Hierárquica\n",
+        "\n",
+        "**Objetivo**: Crie uma classe `Empregado`. A partir dela, crie `Gerente` e `Desenvolvedor`, cada um com atributos e métodos específicos do seu cargo."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Empregado():\n",
+        "  def __init__(self, nome, idade):\n",
+        "    self.nome = nome\n",
+        "    self.idade = idade\n",
+        "\n",
+        "  def info(self):\n",
+        "    print(f\"nome: {self.nome}\")\n",
+        "    print(f\"idade: {self.idade}\")\n",
+        "\n",
+        "class Gerente(Empregado):\n",
+        "  def __init__(self, nome, idade, saldo_empresarial):\n",
+        "    super().__init__(nome, idade)\n",
+        "    self.saldo_empresarial = saldo_empresarial\n",
+        "\n",
+        "  def info_gerente(self):\n",
+        "    print(f\"nome: {self.nome}\")\n",
+        "    print(f\"idade: {self.idade}\")\n",
+        "    print(f\"saldo empresarial:{self.saldo_empresarial}\")\n",
+        "    print(\"-=\" * 30)\n",
+        "class Desenvolvedor(Empregado):\n",
+        "  def __init__(self, nome, idade, linguagem_de_programacao):\n",
+        "    super().__init__(nome, idade)\n",
+        "    self.linguagem_de_programacao = linguagem_de_programacao\n",
+        "\n",
+        "  def info_desenvolvedor(self):\n",
+        "    print(f\"mome:{self.nome}\")\n",
+        "    print(f\"idade: {self.idade}\")\n",
+        "    print(f\"linguagem de programacao: {self.linguagem_de_programacao}\")\n",
+        "\n",
+        "emp1 = Gerente(\"anima\", 23, 3000)\n",
+        "emp2 =Desenvolvedor(\"erik\", 14, \"python\")\n",
+        "emp1.info_gerente()\n",
+        "emp2.info_desenvolvedor()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "1T4MiDXaSCO6",
+        "outputId": "fa361ce8-d528-4d80-c333-72043f6ec881"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "nome: anima\n",
+            "idade: 23\n",
+            "saldo empresarial:3000\n",
+            "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n",
+            "mome:erik\n",
+            "idade: 14\n",
+            "linguagem de programacao: python\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "baf04e83"
+      },
+      "source": [
+        "### Exercício 5: Herança Multinível\n",
+        "\n",
+        "**Objetivo**: Crie uma classe `Veiculo`. Deriva `Carro` de `Veiculo`, e `CarroEsportivo` de `Carro`, demonstrando uma cadeia de herança."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Veiculo():\n",
+        "  def __init__(self, marca, modelo):\n",
+        "    self.marca = marca\n",
+        "    self.modelo = modelo\n",
+        "  def info(self):\n",
+        "    print(f\" marca: {self.marca}\")\n",
+        "    print(f\"modelo:{self.modelo}\")\n",
+        "\n",
+        "class Carro(Veiculo):\n",
+        "  def __init__(self, marca, modelo, velocidade):\n",
+        "    super().__init__(marca, modelo)\n",
+        "    self.velocidade = velocidade\n",
+        "\n",
+        "  def info(self):\n",
+        "    print(f\"marca: {self.marca}\")\n",
+        "    print(f\"modelo: {self.modelo}\")\n",
+        "    print(f\"velocidade: {self.velocidade}\")\n",
+        "    print(\"-=\" * 30)\n",
+        "\n",
+        "class CarroEsportivo(Carro):\n",
+        "  def __init__(self, marca, modelo, velocidade):\n",
+        "    super().__init__(marca, modelo, velocidade)\n",
+        "\n",
+        "  def info(self):\n",
+        "    print(f\"marca: {self.marca}\")\n",
+        "    print(f'modelo: {self.modelo}')\n",
+        "\n",
+        "  def modo_esportivo(self):\n",
+        "    print(\"modo esportivo ativado\")\n",
+        "\n",
+        "\n",
+        "car01 = Carro(\"volvo\", 2011, 250)\n",
+        "car02 = CarroEsportivo(\"fusion\", 2011, 280)\n",
+        "car01.info()\n",
+        "car02.info()\n",
+        "car02.modo_esportivo()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "4jMMvVlbbthg",
+        "outputId": "c972effb-d075-4352-e4e6-0f2a0461e7bb"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "marca: volvo\n",
+            "modelo: 2011\n",
+            "velocidade: 250\n",
+            "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n",
+            "marca: fusion\n",
+            "modelo: 2011\n",
+            "modo esportivo ativado\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "a69a5fcf"
+      },
+      "source": [
+        "### Exercício 6: Herança Múltipla (Mixins)\n",
+        "\n",
+        "**Objetivo**: Crie classes `Nadador` e `Corredor` (mixins). Crie uma classe `Triatleta` que herda de ambas e possui habilidades de nadar e correr."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Nadador():\n",
+        "  def __init__(self, nome, velocidade_de_natacao):\n",
+        "    self.nome = nome\n",
+        "    self.velocidade_de_natacao = velocidade_de_natacao\n",
+        "\n",
+        "  def nadar(self):\n",
+        "    print(\"estou nadando\")\n",
+        "\n",
+        "class Corredor():\n",
+        "  def __init__(self, nome, velocidade, distancia_percorrida):\n",
+        "    self.nome = nome\n",
+        "    self.velocidade= velocidade\n",
+        "    self.distancia_percorrida = distancia_percorrida\n",
+        "\n",
+        "  def correr(self):\n",
+        "    print(\"estou correndo\")\n",
+        "\n",
+        "\n",
+        "class Triatleta(Nadador, Corredor):\n",
+        "  def __init__(self, nome, velocidade, distancia_percorrida, velocidade_de_natacao):\n",
+        "    Nadador.__init__(self, nome, velocidade_de_natacao)\n",
+        "    Corredor.__init__(self, nome, velocidade, distancia_percorrida)\n",
+        "\n",
+        "  def Triatleta(self):\n",
+        "    print(\"parabens\")\n",
+        "\n",
+        "\n",
+        "p0 = Nadador(\"erik\", 32)\n",
+        "p1 = Triatleta(\"erik\", 32, 21, 12)\n",
+        "p1.Triatleta()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Fje9GA7Xcmum",
+        "outputId": "cf6aed3f-af6c-432a-b0f4-028ca69d2205"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "parabens\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "BlwS2o1fnLrj"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
